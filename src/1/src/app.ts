@@ -32,6 +32,16 @@ function countWords(text: string): number {
 }
 
 /**
+ * This function returns the number of characters in a given text
+ *
+ * @param {string} text
+ * @returns {number}
+ */
+function countCharacters(text: string): number {
+  return text.split("").length;
+}
+
+/**
  * This function is the unix wc clone implementation
  *
  * @async
@@ -63,6 +73,10 @@ export async function app(argv: string[]): Promise<string> {
           case "-w": {
             const wordCount = countWords(fileContents);
             return wordCount.toString() + " " + fileName;
+          }
+          case "-m": {
+            const characterCount = countCharacters(fileContents);
+            return characterCount.toString() + " " + fileName;
           }
         }
       }
