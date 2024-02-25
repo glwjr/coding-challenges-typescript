@@ -1,5 +1,16 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
+  roots: ['<rootDir>/packages'],
+  modulePathIgnorePatterns: ["build"],
+  testMatch: [
+    '**/__tests__/**/*.+(ts|tsx|js)',
+    '**/?(*.)+(spec|test).+(ts|tsx|js)'
+  ],
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest'
+  },
+  verbose: true,
+  coverageDirectory: '<rootDir>/coverage',
+  collectCoverage: true,
+  detectOpenHandles: true,
+  silent: false,
 };

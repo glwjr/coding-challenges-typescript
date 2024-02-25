@@ -11,12 +11,6 @@
       "forceConsistentCasingInFileNames": true,
       "rootDir": "./src",
       "outDir": "./build",
-  },
-  "files": [
-  ],
-  "references": [
-    {
-      "path": "./packages/ccwc"
-    }
-  ]
+      "composite": true
+  }
 }

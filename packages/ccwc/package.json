@@ -1,0 +1,11 @@
+{
+  "name": "ccwc",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "start": "tsc --build && node ./build/index.js"
+  },
+  "bin": {
+    "ccwc": "./build/index.js"
+  }
+}
