@@ -2,7 +2,8 @@
   "name": "coding-challenges",
   "scripts": {
     "test": "jest",
-    "build": "tsc --build --verbose"
+    "build": "tsc --build --verbose",
+    "watch": "tsc --build --verbose . --watch"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
