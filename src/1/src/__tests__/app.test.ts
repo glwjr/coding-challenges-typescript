@@ -20,5 +20,10 @@ describe("Testing with file path", () => {
       const argv = [" ", " ", "-l", filePath];
       expect(await app(argv)).toBe(`${wcLineCount} ${filePath}`);
     });
+
+    test(`-w option with file path`, async () => {
+      const argv = [" ", " ", "-w", filePath];
+      expect(await app(argv)).toBe(`${wcWordCount} ${filePath}`);
+    });
   });
 });

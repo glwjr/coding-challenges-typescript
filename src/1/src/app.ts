@@ -1,32 +1,34 @@
-import { statSync } from "fs";
-import { open } from "node:fs/promises";
+import fs from "fs";
 
 /**
- * This function returns the number of bytes in a file
+ * This function returns the number of bytes in a given file
  *
  * @param {string} fileName
  * @returns {number}
  */
 function countBytes(fileName: string): number {
-  const { size } = statSync(fileName);
+  const { size } = fs.statSync(fileName);
   return size;
 }
 
 /**
- * This function returns the number of lines in a file
+ * This function returns the number of lines in a given text
  *
- * @param {string} fileName
- * @returns {Promise<number>}
+ * @param {string} text
+ * @returns {number}
  */
-async function countLines(fileName: string): Promise<number> {
-  let count: number = 0;
-  const file = await open(fileName);
+function countLines(text: string): number {
+  return text.split(/\r\n|\r|\n/).length - 1;
+}
 
-  for await (const line of file.readLines()) {
-    count++;
-  }
-
-  return count;
+/**
+ * This function returns the number of words in a given text
+ *
+ * @param {string} text
+ * @returns {number}
+ */
+function countWords(text: string): number {
+  return text.trim().split(/\s+/).length;
 }
 
 /**
@@ -43,14 +45,25 @@ export async function app(argv: string[]): Promise<string> {
       const option = argv[2];
       const fileName = argv[3];
 
-      switch (option) {
-        case "-c": {
-          const byteCount = countBytes(fileName);
-          return byteCount.toString() + " " + fileName;
-        }
-        case "-l": {
-          const lineCount = await countLines(fileName);
-          return lineCount.toString() + " " + fileName;
+      if (fs.existsSync(fileName)) {
+        const fileContents = fs.readFileSync(fileName, {
+          encoding: "utf8",
+          flag: "r",
+        });
+
+        switch (option) {
+          case "-c": {
+            const byteCount = countBytes(fileName);
+            return byteCount.toString() + " " + fileName;
+          }
+          case "-l": {
+            const lineCount = countLines(fileContents);
+            return lineCount.toString() + " " + fileName;
+          }
+          case "-w": {
+            const wordCount = countWords(fileContents);
+            return wordCount.toString() + " " + fileName;
+          }
         }
       }
     }
