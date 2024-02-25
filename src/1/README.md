@@ -17,7 +17,7 @@ npx ts-node src/index.ts [option] [file-name]
 ccwc supports the following options:
 
 - `-c` ouputs the number of bytes in a file
-- `-l` ouputs the number of lines in a file (TODO)
+- `-l` ouputs the number of lines in a file
 - `-w` ouputs the number of words in a file (TODO)
 - `-m` ouputs the number of characters in a file (TODO)
 
@@ -28,5 +28,5 @@ When no options are provided, the output is the equivalent to the -c, -l, and -w
 The ccwc application utilizes [Jest](https://jestjs.io/). All of the tests are made only for **LINUX** environments. To run the tests, `cd` to the root directory of this repository and use the following command:
 
 ```bash
-npm test src/ccwc
+npm test src/1
 ```
