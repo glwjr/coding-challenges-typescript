@@ -11,7 +11,7 @@ wc (short for word count) is a command in Unix that calculates a file's word, li
 You can use `ts-node` to run the tool:
 
 ```bash
-npx ts-node index.ts [option] [file-name]
+npx ts-node src/index.ts [option] [file-name]
 ```
 
 ccwc supports the following options:
