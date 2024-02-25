@@ -13,9 +13,12 @@ describe("Testing with file path", () => {
 
     test(`-c option with file path`, async () => {
       const argv = [" ", " ", "-c", filePath];
-      expect(await app(argv, undefined)).toBe(
-        `${wcCharacterCount} ${filePath}`
-      );
+      expect(await app(argv)).toBe(`${wcCharacterCount} ${filePath}`);
+    });
+
+    test(`-l option with file path`, async () => {
+      const argv = [" ", " ", "-l", filePath];
+      expect(await app(argv)).toBe(`${wcLineCount} ${filePath}`);
     });
   });
 });

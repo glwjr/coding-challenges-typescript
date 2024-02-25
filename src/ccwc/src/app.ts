@@ -1,4 +1,5 @@
-import fs from "fs";
+import { statSync } from "fs";
+import { open } from "node:fs/promises";
 
 /**
  * This function returns the number of bytes in a file
@@ -7,8 +8,25 @@ import fs from "fs";
  * @returns {number}
  */
 function countBytes(fileName: string): number {
-  const { size } = fs.statSync(fileName);
+  const { size } = statSync(fileName);
   return size;
+}
+
+/**
+ * This function returns the number of lines in a file
+ *
+ * @param {string} fileName
+ * @returns {Promise<number>}
+ */
+async function countLines(fileName: string): Promise<number> {
+  let count: number = 0;
+  const file = await open(fileName);
+
+  for await (const line of file.readLines()) {
+    count++;
+  }
+
+  return count;
 }
 
 /**
@@ -16,13 +34,9 @@ function countBytes(fileName: string): number {
  *
  * @async
  * @param {string[]} argv
- * @param {?NodeJS.ReadStream | fs.ReadStream} [stream]
  * @returns {Promise<string>}
  */
-export async function app(
-  argv: string[],
-  stream?: NodeJS.ReadStream | fs.ReadStream
-): Promise<any> {
+export async function app(argv: string[]): Promise<string> {
   try {
     // Option is given, file name is given
     if (argv.length === 4) {
@@ -31,14 +45,18 @@ export async function app(
 
       switch (option) {
         case "-c": {
-          const bytes = countBytes(fileName);
-          return bytes.toString() + " " + fileName;
+          const byteCount = countBytes(fileName);
+          return byteCount.toString() + " " + fileName;
+        }
+        case "-l": {
+          const lineCount = await countLines(fileName);
+          return lineCount.toString() + " " + fileName;
         }
       }
-
-      throw new Error("Invalid input or file");
     }
+
+    throw new Error("Invalid input or file");
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
