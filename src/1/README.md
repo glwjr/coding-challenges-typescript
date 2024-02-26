@@ -18,10 +18,10 @@ ccwc supports the following options:
 
 - `-c` ouputs the number of bytes in a file
 - `-l` ouputs the number of lines in a file
-- `-w` ouputs the number of words in a file (TODO)
-- `-m` ouputs the number of characters in a file (TODO)
+- `-w` ouputs the number of words in a file
+- `-m` ouputs the number of characters in a file
 
-When no options are provided, the output is the equivalent to the -c, -l, and -w options (TODO).
+When no options are provided, the output is the equivalent to the -c, -l, and -w options.
 
 ## Tests
 
