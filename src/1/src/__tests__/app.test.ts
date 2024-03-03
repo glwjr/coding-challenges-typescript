@@ -126,7 +126,7 @@ describe("Invalid inputs or invalid file path", () => {
   test(`Valid option, invalid file path, no stream`, async () => {
     const argv = [" ", " ", "-c", "x"];
 
-    expect(app(argv, undefined)).rejects.toThrow("File does not exist");
+    expect(app(argv, undefined)).rejects.toThrow("Invalid input or file");
   });
 
   test(`Valid option, no file path, no stream`, async () => {

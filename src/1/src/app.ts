@@ -106,8 +106,6 @@ export async function app(
           throw new Error("Invalid option");
         }
       }
-    } else if (!fs.existsSync(filePath)) {
-      throw new Error("File does not exist");
     }
   }
 
@@ -164,11 +162,17 @@ export async function app(
 
       // If no option is given
       if (argv.length === 2) {
-        const lineCount = countLines(contents).toString();
-        const wordCount = countWords(contents).toString();
-        const byteCount = buffer.length.toString();
+        const lineCount = countLines(contents);
+        const wordCount = countWords(contents);
+        const byteCount = buffer.length;
 
-        return lineCount + " " + wordCount + " " + byteCount;
+        return (
+          lineCount.toString() +
+          " " +
+          wordCount.toString() +
+          " " +
+          byteCount.toString()
+        );
       }
     } catch (error) {
       throw error;
