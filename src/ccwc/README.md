@@ -28,5 +28,5 @@ When no options are provided, the output is the equivalent to the -c, -l, and -w
 The ccwc application utilizes [Jest](https://jestjs.io/). All of the tests are made only for **LINUX** environments. To run the tests, `cd` to the root directory of this repository and use the following command:
 
 ```bash
-npm test src/1
+npm test src/ccwc
 ```
