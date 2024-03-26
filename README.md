@@ -26,6 +26,6 @@ npm test
 To run tests for a specific challenge, use the following command:
 
 ```bash
-# npm test src/<challenge_number>
-npm test src/1
+# npm test src/<directory_name>
+npm test src/ccwc
 ```
